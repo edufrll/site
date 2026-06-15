@@ -420,8 +420,8 @@
 </script>
 
 <!-- script MODULE: import estático — funciona em HTTPS/GitHub Pages -->
-<script type="module">
-import { Wllama } from './wllama/bundle.js';
+<script src="./wllama/bundle.js"></script>
+<script>
 
 (async () => {
   tline('Runtime wllama carregado ✓', 'ok');
@@ -455,6 +455,7 @@ import { Wllama } from './wllama/bundle.js';
     try {
       // logger stub evita "logger.debug is not a function" em alguns builds CDN
       const logger = { debug: ()=>{}, info: ()=>{}, warn: ()=>{}, error: console.error };
+      const Wllama = WllamaLib.Wllama;
       engine = new Wllama(WASM_PATHS, { logger });
 
       await engine.loadModelFromUrl(MODEL_URL, {
